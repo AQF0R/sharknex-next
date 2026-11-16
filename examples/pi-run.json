@@ -1,0 +1,33 @@
+{
+  "name": "Pi 授权只读观察",
+  "source": "api",
+  "mode": "normal",
+  "scope": {
+    "targets": ["http://127.0.0.1:18080/authorized"],
+    "tools": ["http.observe"]
+  },
+  "max_workers": 1,
+  "max_tasks": 4,
+  "deadline": "2026-11-15T23:00:00+08:00",
+  "goals": [
+    {
+      "key": "observe",
+      "name": "获取授权目标真实 HTTP 观察",
+      "required_facts": ["analysis_completed"]
+    }
+  ],
+  "tasks": [
+    {
+      "executor": "pi",
+      "key": "http-analysis",
+      "goal": "observe",
+      "type": "web_analysis",
+      "name": "授权只读 HTTP 分析",
+      "target": "http://127.0.0.1:18080/authorized",
+      "tools": ["http.observe"],
+      "capabilities": ["web_analysis"],
+      "priority": 60,
+      "dependencies": []
+    }
+  ]
+}

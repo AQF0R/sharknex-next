@@ -1,0 +1,83 @@
+{
+  "name": "本地协同引擎演示",
+  "source": "local",
+  "mode": "benchmark",
+  "scope": {
+    "targets": [
+      "local://lab/app"
+    ],
+    "tools": [
+      "local.observe"
+    ]
+  },
+  "max_workers": 3,
+  "max_tasks": 30,
+  "deadline": "替换为未来 24 小时内的 RFC3339 时间",
+  "goals": [
+    {
+      "key": "assessment",
+      "name": "受控协同评估",
+      "required_facts": [
+        "service_identified",
+        "analysis_completed",
+        "evidence_collected",
+        "verification_completed"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "key": "discover",
+      "goal": "assessment",
+      "type": "asset_discovery",
+      "name": "资产观察",
+      "target": "local://lab/app",
+      "tools": [
+        "local.observe"
+      ],
+      "capabilities": [
+        "asset_discovery"
+      ],
+      "priority": 70,
+      "dependencies": [],
+      "delay_ms": 600
+    },
+    {
+      "key": "web",
+      "goal": "assessment",
+      "type": "web_analysis",
+      "name": "独立 Web 分析",
+      "target": "local://lab/app",
+      "tools": [
+        "local.observe"
+      ],
+      "capabilities": [
+        "web_analysis"
+      ],
+      "priority": 60,
+      "dependencies": [],
+      "delay_ms": 600
+    },
+    {
+      "key": "evidence",
+      "goal": "assessment",
+      "type": "evidence_collection",
+      "name": "整理共享证据",
+      "target": "local://lab/app",
+      "tools": [
+        "local.observe"
+      ],
+      "capabilities": [
+        "evidence_collection"
+      ],
+      "priority": 50,
+      "dependencies": [
+        {
+          "key": "discover",
+          "type": "success"
+        }
+      ],
+      "delay_ms": 600
+    }
+  ]
+}

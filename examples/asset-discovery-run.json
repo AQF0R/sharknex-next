@@ -1,0 +1,75 @@
+{
+  "name": "授权资产与指纹评估",
+  "source": "web-pi",
+  "mode": "normal",
+  "scope": {
+    "targets": [
+      "http://38.76.196.139/"
+    ],
+    "tools": [
+      "tcp.discover"
+    ],
+    "tcp_ports": [
+      21,
+      22,
+      25,
+      80,
+      443,
+      445,
+      3306,
+      3389,
+      5432,
+      6379,
+      8080,
+      8443
+    ],
+    "authorization": {
+      "confirmed": true,
+      "statement": "用户已明确确认 38.76.196.139 已获授权；允许仅对声明端口低速TCP connect及只读服务指纹采集，不扩展IP、域名或重定向目标，不进行认证尝试、漏洞利用或压力测试。"
+    }
+  },
+  "max_workers": 1,
+  "max_tasks": 1,
+  "deadline": "2026-11-15T22:00:00+08:00",
+  "goals": [
+    {
+      "key": "discovery",
+      "name": "完成声明端口的资产和服务指纹采集",
+      "required_facts": [
+        "services_discovered"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "executor": "pi",
+      "key": "discover-ip",
+      "goal": "discovery",
+      "type": "asset_discovery",
+      "name": "授权低速资产与服务指纹探测",
+      "target": "http://38.76.196.139/",
+      "ports": [
+        21,
+        22,
+        25,
+        80,
+        443,
+        445,
+        3306,
+        3389,
+        5432,
+        6379,
+        8080,
+        8443
+      ],
+      "tools": [
+        "tcp.discover"
+      ],
+      "capabilities": [
+        "asset_discovery"
+      ],
+      "priority": 60,
+      "dependencies": []
+    }
+  ]
+}

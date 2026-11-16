@@ -1,0 +1,23 @@
+mode: dev
+listen: 127.0.0.1:8080
+database_url: ""
+redis_url: ""
+workspace: .dev/workspaces
+workers: 3
+heartbeat: 10s
+offline: 30s
+lease: 60s
+renew: 20s
+recovery: 10s
+pi:
+  enabled: false
+  node: node
+  script: pi-adapter/bridge.ts
+  model: ""
+  base_url: ""
+  max_turns: 8
+  max_tools: 8
+  max_tokens: 16000
+  output_tokens: 2048
+  concurrency: 2
+  allowed_cidrs: [] # 仅由运维显式开放本地或私有授权靶场
