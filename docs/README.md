@@ -15,6 +15,7 @@
 | 文档 | 内容 |
 |---|---|
 | [plans/next-phase-execution.md](plans/next-phase-execution.md) | 下一阶段「能力契约与阶段验收可信化」：工作项、验收标准、顺序、非目标、回滚、待确认项 |
+| [plans/skill-library-integration.md](plans/skill-library-integration.md) | 技能库选型（ctf-skills 主战 + ACSS 定向摘取）与 TSecBench 闭卷/平台/工具面改造清单、六域路由表、M0-M5 里程碑 |
 
 ## 历史（保留原文，仅代表当时状态，不作为现状依据）
 
